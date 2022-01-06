@@ -1,0 +1,12 @@
+;+;*;(;);i;#
+E;err;err;(TE'|1);err;(TE'|1);err
+E';(+TE'|2);err;err;(epsz|3);err;(epsz|3)
+T;err;err;(FT'|4);err;(FT'|4);err
+T';(epsz|6);(*FT'|5);err;(epsz|6);err;(epsz|6)
+F;err;err;((E)|7);err;(i|8);err
++;pop;err;err;err;err;err
+*;err;pop;err;err;err;err
+(;err;err;pop;err;err;err
+);err;err;err;pop;err;err
+i;err;err;err;err;pop;err
+#;err;err;err;err;err;accept
