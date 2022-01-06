@@ -1,0 +1,320 @@
+﻿<Window x:Class="fordto.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:fordto"
+        mc:Ignorable="d"
+        Height="600" Width="920"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Border Background="#272537"
+            CornerRadius="10"
+            MouseDown="Border_MouseDown">
+        <Grid Margin="-10,0,10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Column="3"
+                    Style="{StaticResource xButton}"
+                    Click="exit_Click"
+                    Width="50" Height="50"
+                    HorizontalAlignment="Right"/>
+
+            <TextBlock Grid.ColumnSpan="2"
+                       Text="Molnár Péter - H1MCKP&#x0a;Fordítóprogramok gyakorlat"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Foreground="White"
+                       FontSize="15"
+                       Margin="20,0,0,0"/>
+
+            <TextBlock x:Name="msgLabel"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="3"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextAlignment="Center"
+                       Width="600"
+                       Text="Welcome"
+                       Foreground="#ffb73a"
+                       
+                       Background="Transparent"/>
+
+            <StackPanel Grid.Row="2">
+                <TextBlock 
+                       Grid.Column="0"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextAlignment="Center"
+                       Width="400"
+                       Text="Original Input"
+                       Foreground="White"
+                       Margin="20,35,0,0"
+                       Background="Transparent"/>
+
+                <TextBlock 
+                       Grid.Column="0"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextAlignment="Center"
+                       Width="400"
+                       Text="Converted Input"
+                       Foreground="White"
+                       Margin="20,45,0,0"
+                       Background="Transparent"/>
+
+                <TextBlock 
+                       Grid.Column="0"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextAlignment="Center"
+                       Width="400"
+                       Text="Import the .csv"
+                       Foreground="White"
+                       Margin="20,45,0,0"
+                       Background="Transparent"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2"
+                        Grid.Column="1">
+                <Grid>
+                    <Border CornerRadius="10"
+                            Background="#353340"
+                            Width="300" Height="40"
+                            BorderBrush="#ffb73a"
+                            BorderThickness="1"
+                            Margin="5,20,0,0">
+                        <Grid>
+                            <Rectangle StrokeThickness="1"/>
+                            <TextBox Margin="1"                         
+                                     BorderThickness="0"
+                                     Background="Transparent"
+                                     VerticalContentAlignment="Center"
+                                     Padding="5"
+                                     Foreground="#cfcfcf"
+                                     x:Name="OriginalInputBox"/>
+
+                            <TextBlock IsHitTestVisible="False"
+                                       Text="@OriginalInput"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="10,0,0,0"
+                                       FontSize="11"
+                                       Foreground="DarkGray"
+                                       Grid.Column="1">
+
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=OriginalInputBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+
+                </Grid>
+
+                <Grid>
+                    <Border CornerRadius="10"
+                            Background="#353340"
+                            Width="300" Height="40"
+                            Margin="5,20,0,0"
+                            BorderBrush="#ffb73a"
+                            BorderThickness="1">
+                        <Grid>
+                            <Rectangle StrokeThickness="1"/>
+                            <TextBox Margin="1"                         
+                                     BorderThickness="0"
+                                     Background="Transparent"
+                                     VerticalContentAlignment="Center"
+                                     Padding="5"
+                                     Foreground="#cfcfcf"
+                                     x:Name="ConvertedInputBox"/>
+
+                            <TextBlock IsHitTestVisible="False"
+                                       Text="@ConvertedInput"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="10,0,0,0"
+                                       FontSize="11"
+                                       Foreground="DarkGray"
+                                       Grid.Column="1">
+
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=ConvertedInputBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <Grid>
+                    <Border CornerRadius="10"
+                            Background="#353340"
+                            Width="300" Height="40"
+                            Margin="5,20,0,0"
+                            BorderBrush="#ffb73a"
+                            BorderThickness="1">
+                        <Grid>
+                            <Rectangle StrokeThickness="1"/>
+                            <TextBox Margin="1"                         
+                                     BorderThickness="0"
+                                     Background="Transparent"
+                                     VerticalContentAlignment="Center"
+                                     Padding="5"
+                                     Foreground="#cfcfcf"
+                                     x:Name="PathInputBox"
+                                     IsEnabled="False"/>
+
+                            <TextBlock IsHitTestVisible="False"
+                                       Text="@Import the .csv"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="10,0,0,0"
+                                       FontSize="11"
+                                       Foreground="DarkGray"
+                                       Grid.Column="1"
+                                       >
+
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=PathInputBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2"
+                        Grid.Column="2">
+                <Button x:Name="convertBtn"
+                        Content="Convert"
+                        Click="convertBtn_Click"
+                        Style="{StaticResource RoundButton}"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Right"
+                        Width="100"
+                        Height="40"
+                        Margin="0,20,0,0"/>
+
+                <Button x:Name="giveToTextBoxBtn"
+                        Content="Add to the solver"
+                        
+                        Style="{StaticResource RoundButton}"
+                        Click="giveToTextBoxBtn_Click"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Right"
+                        Width="100"
+                        Height="40"
+                        Margin="0,20,0,0"/>
+
+                <Button x:Name="openDialogBtn"
+                        Content="Open"
+                        Style="{StaticResource RoundButton}"
+                        Click="openFileDialog_Click"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Right"
+                        Width="100"
+                        Height="40"
+                        Margin="0,20,0,0"/>
+            </StackPanel>
+
+            <Button x:Name="solveBtn"
+                    Click="solve_Click"
+                    IsEnabled="False"
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Content="Solve Step By Step"                
+                    Style="{StaticResource RoundButton}"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    Width="200"
+                    Height="40"
+                    Margin="0,0,0,0"/>
+
+            <Grid Grid.Row="2"
+                  Grid.Column="3"
+                  Grid.RowSpan="2"
+                  >
+                <Border Background="#353340"
+                        CornerRadius="20"
+                        BorderBrush="#ffb73a"
+                        BorderThickness="1"
+                        Margin="5,5,5,5"
+                        />
+
+                <TextBlock x:Name="solveArea" 
+                       Background="Transparent"
+                           Foreground="white"
+                           Margin="20"/>
+            </Grid>
+
+            <DataGrid x:Name="dataGrid"
+                      Grid.Row="3"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="3"
+                      IsReadOnly="True"
+                      Height="280" Width="570"
+                      HorizontalAlignment="Center" 
+                      VerticalAlignment="Center" 
+                      Background="#272537"
+                      FontSize="20"
+                      Foreground="White" Margin="20,10,10,10"
+                      >
+
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#272537"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,2"/>
+                        <Setter Property="BorderBrush" Value="#ffb73a"/>
+                        <Setter Property="Visibility" Value="Hidden"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Style.Setters>
+                            <Setter Property="Background" Value="#272537"/>
+                            <Setter Property="BorderBrush" Value="#ffb73a"/>
+                        </Style.Setters>
+                    </Style>
+                </DataGrid.CellStyle>
+            </DataGrid>
+
+
+        </Grid>
+    </Border>
+</Window>
